@@ -4,7 +4,22 @@
 <link rel="icon" type="image/ico" href="assets/cactus.png" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<head>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+		.column {
+		  float: left;
+		  width: 33.33%;
+		}
+
+		/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+	</style>
+</head>
 <body class="w3-content" style="max-width:1300px">
 
 <div class="w3-row">
