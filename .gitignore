@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+
+# The editor, its catalog, and local tooling must never be published.
+/scripts/
+
+# Stage only the photographs referenced by the public gallery, explicitly.
+/assets/photography/

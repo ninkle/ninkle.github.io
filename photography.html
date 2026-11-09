@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Photography - Nicole Fitzgerald</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/ico" href="assets/cactus.png" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    body { font-family: 'Cutive Mono', monospace; }
+    h1, h4 { font-family: inherit; }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 40px 24px;
+      align-items: start;
+      padding-bottom: 64px;
+    }
+    .gallery figure { margin: 0; position: relative; }
+    .gallery img { display: block; width: 100%; height: auto; }
+    .gallery img.portrait { aspect-ratio: 3 / 2; object-fit: cover; object-position: center; }
+    .gallery figcaption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      margin: 0; padding: 32px 16px 14px; font-size: 14px; color: white;
+      background: linear-gradient(transparent, rgb(0 0 0 / 80%));
+      opacity: 0; transition: opacity 150ms; pointer-events: none;
+      white-space: pre-wrap; overflow-wrap: anywhere; max-height: 100%; overflow: hidden;
+    }
+    .gallery figure:hover figcaption, .gallery figure:focus-within figcaption { opacity: 1; }
+    @media (hover: none) { .gallery figcaption { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .gallery figcaption { transition: none; } }
+    .photo-link { display: block; cursor: zoom-in; }
+    .photo-link:focus-visible { outline: 2px solid #111; outline-offset: 6px; }
+    .viewer {
+      width: min(1500px, 96vw);
+      max-width: 96vw;
+      max-height: 96vh;
+      border: 0;
+      padding: 20px;
+    }
+    .viewer::backdrop { background: rgb(0 0 0 / 85%); }
+    .viewer img { display: block; width: 100%; height: 78vh; object-fit: contain; }
+    #viewer-caption { margin: 16px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .viewer-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 16px; }
+    .viewer button { font: inherit; background: white; color: #111; border: 1px solid #bbb; padding: 8px 12px; cursor: pointer; }
+    .viewer button:disabled { opacity: 0.4; cursor: default; }
+    .viewer-close { margin-left: auto; }
+    body.viewer-open { overflow: hidden; }
+    @media (max-width: 900px) {
+      .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 600px) {
+      .gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="w3-content" style="max-width:1300px">
+  <main class="w3-container">
+    <header class="w3-padding-64">
+      <h4><a href="index.html">Home</a></h4>
+      <h1>Photography</h1>
+    </header>
+    <div class="gallery">
+    <!-- gallery:start -->
+      <figure>
+        <a href="assets/photography/photo-001-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-001-small.jpg" width="720" height="473" alt="Sunlight through a doorway in a dark wooden interior" loading="eager" decoding="async" fetchpriority="high">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-002-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-002-small.jpg" width="720" height="477" alt="Mountain peaks above an ornate stone monastery" loading="eager" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-003-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-003-small.jpg" width="720" height="477" alt="Buildings nestled against a wooded cliff" loading="eager" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-004-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-004-small.jpg" width="720" height="477" alt="Ornate cathedral towers against a blue sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-005-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-005-small.jpg" width="720" height="477" alt="Stone steps descending into an excavated chamber" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-006-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-006-small.jpg" width="720" height="477" alt="Narrow passage between tall stone walls" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-007-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-007-small.jpg" width="720" height="473" alt="Sunlit path through tall trees beside wooden buildings" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-008-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-008-small.jpg" width="720" height="473" alt="Wooden temple surrounded by tall trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-009-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-009-small.jpg" width="720" height="477" alt="Pink granite outcrops along a wooded lakeshore" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-010-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-010-small.jpg" width="720" height="477" alt="Canoe pulled onto a sandy lakeshore" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-011-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-011-small.jpg" width="720" height="473" alt="Stone steps leading to a shaded wooden building" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-012-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-012-small.jpg" width="720" height="473" alt="People on a curved breakwater beside the sea" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-013-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-013-small.jpg" width="720" height="479" alt="Hillside city stretching toward the horizon" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-014-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-014-small.jpg" width="720" height="479" alt="City waterfront seen from the water" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-015-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-015-small.jpg" width="720" height="479" alt="Ferry passing a hilly waterfront skyline" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-016-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-016-small.jpg" width="720" height="479" alt="Sailboat rigging framing an island" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-017-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-017-small.jpg" width="720" height="479" alt="Rocky island with large buildings and a tower" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-018-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-018-small.jpg" width="720" height="479" alt="Empire State Building viewed from the street" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-019-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-019-small.jpg" width="720" height="479" alt="City buildings behind leafy trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-020-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-020-small.jpg" width="720" height="473" alt="Mountain slopes meeting a broad body of water" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-021-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-021-small.jpg" width="720" height="473" alt="Hilltop castle framed by trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-022-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-022-small.jpg" width="720" height="473" alt="Suspension bridge silhouetted against golden sunlight" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-023-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-023-small.jpg" width="720" height="473" alt="Suspension bridge crossing a bay beneath green hills" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-024-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-024-small.jpg" width="720" height="473" alt="Person silhouetted beside a window overlooking autumn leaves" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-025-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-025-small.jpg" width="720" height="473" alt="Autumn garden through a wooden window" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-026-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-026-small.jpg" width="720" height="473" alt="Clouds of steam rising from a rocky valley" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-027-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-027-small.jpg" width="720" height="473" alt="Red and orange foliage surrounding stone steps" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-028-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-028-small.jpg" width="720" height="473" alt="Fishing boats in a harbor beneath hills" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-029-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-029-small.jpg" width="720" height="473" alt="Sunlight streaming across a distant valley" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-030-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-030-small.jpg" width="720" height="473" alt="People walking along a narrow traditional street" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-031-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-031-small.jpg" width="720" height="473" alt="Autumn trees reflected in a still pond" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-032-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-032-small.jpg" width="720" height="473" alt="Wooden house on a misty green hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-033-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-033-small.jpg" width="720" height="473" alt="Red autumn leaves over a shaded garden" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-034-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-034-small.jpg" width="720" height="477" alt="Photographic prints spread across a wooden table" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-035-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-035-small.jpg" width="720" height="477" alt="Photographs displayed in a sunlit window" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-036-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-036-small.jpg" width="720" height="477" alt="Railway tracks passing beneath a station roof" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-037-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-037-small.jpg" width="720" height="477" alt="Sunlit doorway on a quiet street" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-038-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-038-small.jpg" width="720" height="477" alt="Golden Gate Bridge seen through boat rigging" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-039-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-039-small.jpg" width="720" height="477" alt="House surrounded by a lush garden" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-040-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-040-small.jpg" width="720" height="477" alt="Plants and stonework in a dense green garden" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-041-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-041-small.jpg" width="720" height="477" alt="Fallen tree across a shaded forest path" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-042-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-042-small.jpg" width="720" height="477" alt="Paraglider above a broad green landscape" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-043-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-043-small.jpg" width="720" height="477" alt="People swimming in a shaded river" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-044-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-044-small.jpg" width="720" height="477" alt="Sun and shadow across a golden grassy hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-045-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-045-small.jpg" width="720" height="477" alt="Trees growing beside dry grass" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-046-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-046-small.jpg" width="720" height="477" alt="House partly concealed by trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-047-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-047-small.jpg" width="720" height="473" alt="Light falling through a dark wooden interior" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-048-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-048-small.jpg" width="720" height="477" alt="Red flowers among leafy branches" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-049-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-049-small.jpg" width="720" height="477" alt="Wildflowers overlooking a blue sea" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-051-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-051-small.jpg" width="720" height="477" alt="Coastal shrubs beneath a hazy horizon" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-052-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-052-small.jpg" width="720" height="477" alt="White surf breaking against coastal rocks" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-053-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-053-small.jpg" width="720" height="477" alt="Waves beneath golden coastal cliffs" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-055-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-055-small.jpg" width="720" height="477" alt="Turquoise water in a rocky coastal inlet" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-057-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-057-small.jpg" width="720" height="477" alt="Waterfall beside a sunlit granite wall" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-058-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-058-small.jpg" width="720" height="477" alt="River running through a forested mountain valley" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-059-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-059-small.jpg" width="720" height="477" alt="Hiker ascending a steep rocky trail" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-060-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-060-small.jpg" width="720" height="477" alt="Granite peaks above tall evergreen trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-061-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-061-small.jpg" width="720" height="477" alt="Flowering garden in front of a house" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-062-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-062-small.jpg" width="720" height="477" alt="Golden Gate Bridge framed by a dark tunnel" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-063-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-063-small.jpg" width="720" height="477" alt="Layered coastal headlands in warm evening light" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-064-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-064-small.jpg" width="720" height="477" alt="Golden Gate Bridge beyond a tree-lined shoreline" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-065-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-065-small.jpg" width="720" height="477" alt="Granite mountain framed by pine branches" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-066-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-066-small.jpg" width="720" height="477" alt="Person seated beneath a pine tree on a rocky ledge" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-068-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-068-small.jpg" width="720" height="477" alt="Snow-lined cliffs above a broad green valley" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-070-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-070-small.jpg" width="720" height="477" alt="Distant mountain peaks in warm evening light" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-071-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-071-small.jpg" width="720" height="477" alt="Pine trees growing from a rocky mountain ledge" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-072-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-072-small.jpg" width="720" height="473" alt="Bright autumn leaves above a dark wooden roof" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-073-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-073-small.jpg" width="720" height="477" alt="Hand pointing across a tree-lined landscape" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-074-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-074-small.jpg" width="720" height="477" alt="Glass conservatory beside a house and garden" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-075-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-075-small.jpg" width="720" height="477" alt="Large tree shading an outdoor café" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-076-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-076-small.jpg" width="720" height="477" alt="Narrow street beneath carved stone architecture" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-077-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-077-small.jpg" width="720" height="477" alt="Village rooftops and countryside beneath a pale sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-078-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-078-small.jpg" width="720" height="477" alt="Carved stone arches seen from below" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-079-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-079-small.jpg" width="720" height="477" alt="Village surrounded by rolling farmland" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-080-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-080-small.jpg" width="720" height="477" alt="Lakeshore with a bright film light leak" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-081-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-081-small.jpg" width="720" height="477" alt="Shallow rocky water bordered by evergreen trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-082-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-082-small.jpg" width="720" height="477" alt="Sun setting over calm water and distant hills" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-083-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-083-small.jpg" width="720" height="477" alt="Sunlight sparkling on water beside the shore" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-084-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-084-small.jpg" width="720" height="477" alt="Treetop branches against a pale sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-085-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-085-small.jpg" width="720" height="477" alt="Sunlight reflected on water beside a boat" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-086-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-086-small.jpg" width="720" height="477" alt="Rocky coastline and pale sand dunes" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-087-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-087-small.jpg" width="720" height="477" alt="Person walking a bicycle beneath leafy trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-088-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-088-small.jpg" width="720" height="477" alt="Person sitting on a bench in a green garden" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-089-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-089-small.jpg" width="720" height="486" alt="Lush garden with a small building and winding paths" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-090-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-090-small.jpg" width="720" height="486" alt="Garden pavilion beside a pond" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-091-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-091-small.jpg" width="720" height="486" alt="Dark bird perched above a distant coastline" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-092-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-092-small.jpg" width="720" height="477" alt="Paraglider suspended over a steep mountain valley" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-093-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-093-small.jpg" width="720" height="477" alt="Seaplanes moored beneath snowy mountains" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-094-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-094-small.jpg" width="720" height="477" alt="Boats and dock on a lake beneath a cloudy sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-095-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-095-small.jpg" width="720" height="477" alt="People and a dog walking across a snowy landscape" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-096-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-096-small.jpg" width="720" height="477" alt="Quiet canal bordered by flowering bushes" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-097-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-097-small.jpg" width="720" height="477" alt="Evergreen branches against mountain mist" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-098-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-098-small.jpg" width="720" height="477" alt="Long suspended structure in a forest clearing" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-099-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-099-small.jpg" width="720" height="720" alt="People on a rooftop in warm evening sunlight" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-100-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-100-small.jpg" width="720" height="477" alt="Road through a misty cleared hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-101-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-101-small.jpg" width="720" height="477" alt="Suspended structure above a mountain road" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-102-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-102-small.jpg" width="720" height="477" alt="Mist hanging over a green hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-103-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-103-small.jpg" width="720" height="717" alt="Rooftops and water beneath a blue sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-104-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-104-small.jpg" width="720" height="477" alt="Jagged mountain peaks with patches of snow" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-105-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-105-small.jpg" width="720" height="477" alt="Bare branches and seed pods against a winter sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-106-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-106-small.jpg" width="720" height="477" alt="Snow-covered field edged by bare trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-107-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-107-small.jpg" width="720" height="477" alt="Snow among trees in a quiet woodland" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-108-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-108-small.jpg" width="720" height="477" alt="Green coastal cliffs above turquoise water" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-109-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-109-small.jpg" width="720" height="477" alt="Warm light on a rocky ridge" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-110-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-110-small.jpg" width="720" height="477" alt="Person resting on a rock in a forest" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-111-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-111-small.jpg" width="720" height="477" alt="Tram traveling along a street of stone buildings" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-112-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-112-small.jpg" width="720" height="477" alt="Snow-covered residential street" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-113-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-113-small.jpg" width="720" height="477" alt="Winter sunlight between buildings and bare trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-114-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-114-small.jpg" width="720" height="477" alt="Large bare tree beside a snowy street" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-115-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-115-small.jpg" width="720" height="477" alt="Fire burning inside a wood stove" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-116-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-116-small.jpg" width="720" height="477" alt="Small wooden cabin surrounded by snow" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-117-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-117-small.jpg" width="720" height="478" alt="Two people sitting at a table beside a window" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-118-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-118-small.jpg" width="720" height="477" alt="People beside a hillside road and suspended structure" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-119-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-119-small.jpg" width="720" height="720" alt="Tall city building framed by dark façades" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-120-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-120-small.jpg" width="720" height="477" alt="White domed structure on a dry hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-121-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-121-small.jpg" width="720" height="477" alt="Stone pyramid on a rocky hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-122-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-122-small.jpg" width="720" height="477" alt="Domed structure beneath an evening sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-123-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-123-small.jpg" width="720" height="477" alt="Sunset over a distant landscape" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-124-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-124-small.jpg" width="720" height="477" alt="Pale evening sky through hillside shrubs" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-125-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-125-small.jpg" width="720" height="477" alt="Dry scrubland with mountains in the distance" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-126-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-126-small.jpg" width="720" height="477" alt="Person walking through dry hillside vegetation" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-127-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-127-small.jpg" width="720" height="477" alt="Dust cloud rising over a rural track" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-128-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-128-small.jpg" width="720" height="477" alt="Sunlight filtering through dust above a track" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-129-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-129-small.jpg" width="720" height="477" alt="Tall grasses and shrubs beneath a blue sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-130-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-130-small.jpg" width="720" height="477" alt="Hazy horizon seen from a hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-131-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-131-small.jpg" width="720" height="477" alt="Tree stump in a misty clearing" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-132-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-132-small.jpg" width="720" height="477" alt="Rough road winding through a cleared hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-133-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-133-small.jpg" width="720" height="477" alt="Waterfall with an orange film light leak" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-134-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-134-small.jpg" width="720" height="477" alt="Group of people gathered beside a hillside road" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-135-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-135-small.jpg" width="720" height="477" alt="Low mist over rows of green vegetation" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-136-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-136-small.jpg" width="720" height="477" alt="Waterside city beneath a cloud-filled sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-137-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-137-small.jpg" width="720" height="477" alt="Sunlight falling onto dark water between cliffs" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-138-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-138-small.jpg" width="720" height="477" alt="Person looking toward a suspended structure on a hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-139-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-139-small.jpg" width="720" height="717" alt="Lake and mountains beneath a hazy sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-140-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-140-small.jpg" width="720" height="482" alt="Pink-lit mountain ridge above a wooded valley" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-141-large.jpg" class="photo-link">
+          <img class="portrait" src="assets/photography/photo-141-small.jpg" width="482" height="720" alt="Narrow street between colorful buildings" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-142-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-142-small.jpg" width="720" height="482" alt="Ancient stone columns among ruins" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-143-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-143-small.jpg" width="720" height="482" alt="Large domed building viewed from outside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-144-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-144-small.jpg" width="720" height="482" alt="People on a rooftop overlooking a hillside city" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-145-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-145-small.jpg" width="720" height="482" alt="Fishing rods above a busy waterfront" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-146-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-146-small.jpg" width="720" height="482" alt="People walking down a tree-lined city street" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-147-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-147-small.jpg" width="720" height="482" alt="Rooftops stretching toward a distant hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-148-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-148-small.jpg" width="720" height="482" alt="Spices and goods displayed at a brightly lit market stall" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-149-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-149-small.jpg" width="720" height="482" alt="City skyline beneath a pink evening sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-150-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-150-small.jpg" width="720" height="482" alt="People seated on a rooftop in golden sunlight" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-151-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-151-small.jpg" width="720" height="482" alt="Dense city rooftops viewed from above" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-152-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-152-small.jpg" width="720" height="482" alt="Tower above a city hillside in warm light" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-153-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-153-small.jpg" width="720" height="482" alt="People walking along a street lined with trees and flags" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-154-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-154-small.jpg" width="720" height="482" alt="People relaxing on rocks beside blue water" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-155-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-155-small.jpg" width="720" height="482" alt="Turquoise inlet beneath a densely wooded hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-156-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-156-small.jpg" width="720" height="482" alt="Person on an outdoor court with mountains beyond" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-157-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-157-small.jpg" width="720" height="482" alt="Stone ruins on a steep green hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-158-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-158-small.jpg" width="720" height="482" alt="Ancient stone walls overlooking a city" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-159-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-159-small.jpg" width="720" height="482" alt="Stone colonnade standing among ruins" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-160-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-160-small.jpg" width="720" height="482" alt="Steep coastal cliffs above deep blue water" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-161-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-161-small.jpg" width="720" height="482" alt="Swimming pool surrounded by terraces and flowers" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-162-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-162-small.jpg" width="720" height="482" alt="Ancient amphitheater set into a green hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-163-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-163-small.jpg" width="720" height="482" alt="Stone tower overlooking a broad valley" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-164-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-164-small.jpg" width="720" height="482" alt="Person standing beneath leafy vines" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-165-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-165-small.jpg" width="720" height="482" alt="Vine-covered garden with wooden supports" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-166-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-166-small.jpg" width="720" height="482" alt="Pink stone building among evergreen trees" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-167-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-167-small.jpg" width="720" height="482" alt="People beside a tall open metal sculpture" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-168-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-168-small.jpg" width="720" height="482" alt="Metal sculpture against hazy mountain ranges" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-169-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-169-small.jpg" width="720" height="482" alt="Calm lake bordered by mountain slopes" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-170-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-170-small.jpg" width="720" height="482" alt="Hillside town beneath a pale pink sky" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-171-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-171-small.jpg" width="720" height="482" alt="Mountain view framed by a vehicle window" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-172-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-172-small.jpg" width="720" height="482" alt="Bird perched in silhouette against a sunset" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-173-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-173-small.jpg" width="720" height="482" alt="People seated in a café with tall windows" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-174-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-174-small.jpg" width="720" height="482" alt="Stone church beside a broad lake" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-175-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-175-small.jpg" width="720" height="477" alt="Orange sunset reflected on water" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-176-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-176-small.jpg" width="720" height="477" alt="Turquoise lake surrounded by dense evergreen forest" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-177-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-177-small.jpg" width="720" height="477" alt="Person standing on a rocky summit" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-178-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-178-small.jpg" width="720" height="477" alt="Layered mountain ridges beyond a forested valley" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-179-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-179-small.jpg" width="720" height="477" alt="Boats moored beneath bare trees along a canal" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-180-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-180-small.jpg" width="720" height="477" alt="Lakeside dock beneath sunlit clouds" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-181-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-181-small.jpg" width="720" height="482" alt="Bird flying above water and a hillside town" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-182-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-182-small.jpg" width="720" height="482" alt="Sunlit café interior beside tall windows" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-183-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-183-small.jpg" width="720" height="482" alt="Hillside village in hazy evening light" loading="lazy" decoding="async">
+        </a>
+      </figure>
+      <figure>
+        <a href="assets/photography/photo-184-large.jpg" class="photo-link">
+          <img src="assets/photography/photo-184-small.jpg" width="720" height="482" alt="Purple mountain ridges beyond a green hillside" loading="lazy" decoding="async">
+        </a>
+      </figure>
+    <!-- gallery:end -->
+    </div>
+  </main>
+  <dialog class="viewer" aria-label="Photograph viewer">
+    <div class="viewer-controls">
+      <button type="button" id="previous-photo" aria-label="Previous photograph">Previous</button>
+      <span id="photo-count" aria-live="polite"></span>
+      <button type="button" id="next-photo" aria-label="Next photograph">Next</button>
+      <button type="button" class="viewer-close" autofocus>Close</button>
+    </div>
+    <img id="viewer-image" alt="">
+    <p id="viewer-caption" hidden></p>
+  </dialog>
+  <script src="assets/photography.js" defer></script>
+</body>
+</html>
